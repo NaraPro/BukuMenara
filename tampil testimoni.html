@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <a href="/">
+    <img src="image/alsultan.png" alt="logo" width="30" height="30">
+     </a>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Usaha Buku</title>
+    <link rel="stylesheet" href="freestyle.css" />
+    <nav class="navbar">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="Produk.html">Produk</a></li>
+    <li><a href="bedah-buku artikel.html">Bedah Buku Artikel</a></li>
+    <li><a href="testimoni.html">Testimoni</a></li>
+    <li><a href="tampil testimoni.html">Hasil Testimoni</a></li>
+    <li><a href="video produk event.html">Video Produk</a></li>
+    <li><a href="kontak.html">Kontak</a></li>
+  </ul>
+</nav>
+<style></style>
+</head>
+<style>
+    h1 {color: black}
+    h2 {color: black;}
+    div {color: black;}
+    p {color: black;}
+    footer {color: white;}
+</style>
+<body>
+ <main class="formulir">
+    <h2>Testimoni-testimoni pembeli :</h2>
+    <div id="daftarTestimoni"></div>
+    <button id="hapusSemua">Hapus Semua Testimoni</button>
+  </div>
+  <style>footer p {color: white;}</style>
+
+    <section>
+    <div id="daftarTestimoni"></div>
+    </section>
+  </main>
+  </body>
+ <script>
+    const container = document.getElementById('daftarTestimoni');
+    const testimoniList = JSON.parse(localStorage.getItem('testimoniList')) || [];
+
+    if (testimoniList.length === 0) {
+      container.innerHTML = "<p>Belum ada testimoni.</p>";
+    } else {
+      testimoniList.forEach((t, i) => {
+        const el = document.createElement('div');
+        el.className = 'testimoni-box';
+        el.innerHTML = `
+          <p><strong>Nama:</strong> ${t.nama}</p>
+          <p><strong>Nomor:</strong> ${t.Nomor}</p>
+          <p><strong>Buku:</strong> ${t.Buku}</p>
+          <p><strong>Email:</strong> ${t.email}</p>
+          <p><strong>Pesan:</strong> ${t.pesan}</p>
+        `;
+        container.appendChild(el);
+      });
+    }
+
+
+      document.getElementById("hapusSemua").addEventListener("click", function() {
+      const konfirmasi = confirm("Apakah Anda yakin ingin menghapus semua testimoni?");
+      if (konfirmasi) {
+        localStorage.removeItem("testimoniList");
+        location.reload();
+         
+      }
+       });
+  </script>
+
+    <footer>
+    <p>&copy; 2025 Toko Buku Mas Nara</p>
+  </footer>
